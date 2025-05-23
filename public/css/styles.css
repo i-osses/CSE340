@@ -4,3 +4,230 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --primary: #001427ff;
+  --hookers-green: #708d81ff;
+  --main: rgb(255, 255, 255);
+  --highlight: #bf0603ff;
+  --action-text: #8d0801ff;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  background-color: var(--main);
+}
+
+body {
+  /* background: url("../images/site/checkerboard.jpg") repeat; */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#top-header {
+  display: flex;
+  padding: 25px 0;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.siteName {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar {
+  background-color: var(--primary);
+  color: var(--main);
+}
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  justify-content: space-evenly;
+}
+
+.welcome-msg {
+  font-weight: bold;
+  color: var(--primary);
+  background-color: white;
+  margin-bottom: 0;
+}
+
+.hero {
+  display: flex;
+  position: relative;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* padding: 1rem; */
+  /* height: 40vh; */
+  /* border: #001427ff 2px solid; */
+  background-color: white;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  /* font-size: 1rem; */
+  color: var(--primary);
+  /* text-align: left; */
+  padding: 1rem;
+}
+
+.hero ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cta-button {
+  background-color: var(--highlight);
+  color: var(--main);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+.cta-button:hover {
+  background-color: var(--action-text);
+}
+
+.hero-img {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-img img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+}
+
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  /* margin: 2rem; */
+  font-family: Arial, sans-serif;
+}
+
+.reviews,
+.upgrades {
+  flex: 1 1 400px;
+}
+
+.reviews h3,
+.upgrades h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.reviews ul {
+  /* list-style: none; */
+  padding: 0;
+  margin: 0;
+}
+
+.reviews li {
+  margin-bottom: 0.5rem;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.img-box {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 1rem;
+  height: 100%;
+  border-radius: 8px;
+  border: 3px solid var(--highlight);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.upgrade-grid img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.upgrade-grid a {
+  display: block;
+  color: blue;
+  /* text-decoration: underline; */
+  font-weight: bold;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 2px solid #333;
+  margin-top: 2rem;
+}
+
+/* @media screen and (max-width: 600px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  #wrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 5px solid #333;
+  min-height: 100vh;
+  margin: 2rem 10rem;
+  padding: 0 1rem;
+  background-color: var(--main);
+}
+
+body {
+  background: url("../images/site/checkerboard.jpg") repeat;
+}
+
+
+} */
