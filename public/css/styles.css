@@ -269,6 +269,34 @@ footer {
   color: #333;
 }
 
+/* Vehicle detail */
+
+.vehicle-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  /* margin: 2rem; */
+}
+
+.vehicle-detail h2 {
+  flex-basis: 100%;
+  /* font-size: 1.5rem; */
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: var(--primary);
+  color: white;
+}
+
+.vehicle-image,
+.vehicle-info {
+  flex: 1 1 300px;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+}
+
 @media screen and (min-width: 800px) {
   #wrapper {
     display: flex;
@@ -295,22 +323,24 @@ footer {
     font-size: 1.5rem;
   }
 
-  @media screen and (min-width: 1400px) {
-    body {
-      background: url("../images/site/checkerboard.jpg") repeat;
-    }
+  .hero-text {
+    font-size: 2rem;
   }
 
-  @media screen and (min-width: 800px) {
-    .hero-text {
-      font-size: 2rem;
-    }
+  .main-content {
+    flex-direction: row-reverse;
+  }
+  .upgrade-grid {
+    max-width: 400px;
+  }
 
-    .main-content {
-      flex-direction: row-reverse;
-    }
-    .upgrade-grid {
-      max-width: 400px;
-    }
+  main {
+    margin: 2rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  body {
+    background: url("../images/site/checkerboard.jpg") repeat;
   }
 }
