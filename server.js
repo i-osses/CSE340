@@ -12,7 +12,8 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require('./utilities/')
+const utilities = require("./utilities/")
+const errorTestRoute = require("./routes/errorTestRoute")
 
 
 
@@ -22,6 +23,7 @@ const utilities = require('./utilities/')
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+app.use("/error-test", errorTestRoute)
 
 /* ***********************
  * Routes
