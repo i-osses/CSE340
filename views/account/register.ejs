@@ -1,6 +1,14 @@
 <h1><%= title %></h1>
 
-<%- messages('register') %>
+<%- messages('notice') %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
 
 <div class="form-container">
 <form action="/account/register" method="post">
@@ -14,7 +22,7 @@
   <input type="email" id="account_email" name="account_email" required>
 
   <label for="account_password">Password:</label>
-  <input type="password" id="account_password" name="account_password" required>
+  <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
 
     <p class="password-rules">
