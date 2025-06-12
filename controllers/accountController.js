@@ -10,10 +10,12 @@ const accountModel = require("../models/account-model")
 
 async function buildLogin(req, res, next) {
  
-    let nav = await utilities.getNav()
-    res.render("account/login", { 
-      title: "Login", 
-      nav, 
+let nav = await utilities.getNav()
+  res.render("account/login", {
+    title: "Login",
+    nav,
+    errors: null,
+    account_email: "", 
     })
 }
 
@@ -24,11 +26,14 @@ async function buildLogin(req, res, next) {
 
 async function buildRegister(req, res, next) {
  
-    let nav = await utilities.getNav()
-    res.render("account/register", { 
-      title: "Register", 
-      nav, 
-      errors: null
+  let nav = await utilities.getNav()
+  res.render("account/register", {
+    title: "Register",
+    nav,
+    errors: null,
+    account_firstname: "", // Sticky support
+    account_lastname: "",
+    account_email: ""
     })
 }
 
