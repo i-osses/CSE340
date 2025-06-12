@@ -16,6 +16,23 @@ async function buildLogin(req, res, next) {
     })
 }
 
+/* ***********************
+ * deliver registration view activity
+ * unit 4
+ * ************************/
+
+async function buildRegister(req, res, next) {
+ 
+    let nav = await utilities.getNav()
+    res.render("account/register", { 
+      title: "Register", 
+      nav, 
+      errors: null
+    })
+}
+
+
+
 module.exports = {
-  buildLogin
+  buildLogin, buildRegister
 }
