@@ -45,6 +45,74 @@ async function getInventoryDetailById(inv_id) {
 
 
 
+/* ***************************
+ *  add classification  
+ * ************************** */
+async function addClassification (classification_name) {
+  try {
+    const sql = "INSERT INTO classification (classification_name) VALUES ($1)"
+    const result = await pool.query(sql, [classification_name])
+    return result.rowCount // Returns 1 if the insert was successful
+  } catch (error) {
+    console.error("Model error - addClassification:", error)
+    return null
+  }
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryDetailById};
+/* ***************************
+ *  add inventory   
+ * ************************** */
+async function addInventory(
+  classification_id,
+  inv_make,
+  inv_model,
+  inv_year,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_miles,
+  inv_color
+) {
+  try {
+    const sql = `
+      INSERT INTO inventory (
+        classification_id, inv_make, inv_model, inv_year,
+        inv_description, inv_image, inv_thumbnail,
+        inv_price, inv_miles, inv_color
+      )
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    `
+    const result = await pool.query(sql, [
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color
+    ])
+    return result.rowCount // Returns 1 if the insert was successful
+  } catch (error) {
+    console.error("Model error - addInventory:", error)
+    return null
+  }
+}
+
+
+
+
+
+
+module.exports = {
+  getClassifications,
+   getInventoryByClassificationId,
+   getInventoryDetailById,
+  addClassification,
+  addInventory,
+  
+  }
 
