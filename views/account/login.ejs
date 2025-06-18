@@ -1,4 +1,6 @@
-<h1><%= title %></h1>
+<h1>
+  <%= title %>
+</h1>
 
 <div class="notice">
   <%- messages() %>
@@ -6,37 +8,41 @@
 
 <% if (errors) { %>
   <ul class="notice">
-    <% errors.array().forEach(error => { %>
-      <li><%= error.msg %></li>
-    <% }) %>
+    <% errors.array().forEach(error=> { %>
+      <li>
+        <%= error.msg %>
+      </li>
+      <% }) %>
   </ul>
-<% } %>
+  <% } %>
 
-<div class="form-container">
-  <form action="/account/login" method="post">
-    <label for="email">Email Address:</label>
-    <input type="email" id="email" name="email" required value="<%= locals.account_email %>">
+    <div class="form-container">
+      <form action="/account/login" method="post">
+        <label for="account_email">Email Address:</label>
+        <input type="email" id="account_email" name="account_email" required
+          value="<%= typeof account_email !== 'undefined' ? account_email : '' %>">
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    
-    <p class="password-rules">
-      <em>
-        Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.
-      </em>
-    </p>
+        <label for="account_password">Password:</label>
+        <input type="password" id="account_password" name="account_password" required>
 
-    <button type="button" onclick="togglePassword()">Show Password</button>
-    <button type="submit">Login</button>
-  </form>
+        <p class="password-rules">
+          <em>
+            Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special
+            character.
+          </em>
+        </p>
 
-  <p class="signup-link">No account? <a href="/account/register">Sign-up</a></p>
-</div>
+        <button type="button" onclick="togglePassword()">Show Password</button>
+        <button type="submit">Login</button>
+      </form>
 
-<script>
-function togglePassword() {
-  const passwordInput = document.getElementById("password");
-  const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-  passwordInput.setAttribute("type", type);
-}
-</script>
+      <p class="signup-link">No account? <a href="/account/register">Sign-up</a></p>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const passwordInput = document.getElementById("account_password");
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+      }
+    </script>
