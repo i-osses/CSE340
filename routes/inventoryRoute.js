@@ -23,7 +23,7 @@ router.post(
   invController.addClassification
 )
 
-// Add Inventory
+// Add vehicle to the Inventory
 router.get("/add-inventory", invController.buildAddInventory)
 router.post(
   "/add-inventory",
@@ -31,6 +31,12 @@ router.post(
   invValidation.checkInventoryData,
   invController.addInventory
 )
+
+// Route to build edit inventory view
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+);
 
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
