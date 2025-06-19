@@ -114,4 +114,90 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+/* ******************************
+ * Password update validation rules
+ * ***************************** */
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .isLength({ min: 12 })
+      .withMessage("Password must be at least 12 characters long.")
+      .matches("[0-9]")
+      .withMessage("Password must contain at least one number.")
+      .matches("[A-Z]")
+      .withMessage("Password must contain at least one uppercase letter.")
+      .matches("[^a-zA-Z0-9]")
+      .withMessage("Password must contain at least one special character.")
+  ]
+}
+
+/* ******************************
+ * Check password update data and return errors or continue
+ * ***************************** */
+validate.checkPasswordUpdateData = async (req, res, next) => {
+  const { account_id } = req.body
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    const accountData = await require("../models/account-model").getAccountById(account_id)
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      account_id,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+    })
+    return
+  }
+  next()
+}
+
+
+/* ******************************
+ * Account update validation rules
+ * ***************************** */
+validate.accountUpdateRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .notEmpty()
+      .withMessage("First name is required."),
+    body("account_lastname")
+      .trim()
+      .notEmpty()
+      .withMessage("Last name is required."),
+    body("account_email")
+      .trim()
+      .isEmail()
+      .withMessage("A valid email is required.")
+  ]
+}
+
+/* ******************************
+ * Check account update data and return errors or continue
+ * ***************************** */
+validate.checkAccountUpdateData = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  let errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id
+    })
+    return
+  }
+  next()
+}
+
+
+
 module.exports = validate
