@@ -43,6 +43,7 @@ router.post(
 // Unit 5 - Account Management
 router.get(
   "/",
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
