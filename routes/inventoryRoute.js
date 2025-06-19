@@ -23,6 +23,7 @@ router.post(
   invController.addClassification
 )
 
+
 // Add vehicle to the Inventory
 router.get("/add-inventory", invController.buildAddInventory)
 router.post(
@@ -40,5 +41,13 @@ router.get(
 
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to update inventory data
+router.post(
+  "/update",
+  invValidation.inventoryRules(),
+  invValidation.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
 
 module.exports = router;

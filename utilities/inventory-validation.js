@@ -99,6 +99,30 @@ const checkInventoryData = async (req, res, next) => {
 }
 
 
+/* ***************************
+ *  Check Update Data
+ *  For inventory item updates; errors sent to edit view
+ * ************************** */
+const checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  const classificationSelect = await utilities.buildClassificationList(req.body.classification_id)
+  let nav = await utilities.getNav()
+
+  if (!errors.isEmpty()) {
+    res.render("inventory/edit-inventory", {
+      title: "Edit " + req.body.inv_make + " " + req.body.inv_model,
+      nav,
+      classificationSelect,
+      errors: errors.array(),
+      inv_id: req.body.inv_id, 
+      ...req.body  
+    })
+    return
+  }
+  next()
+}
+
+
 
 
 
@@ -109,6 +133,7 @@ module.exports = {
   checkClassificationData,
   inventoryRules,
   checkInventoryData,
+  checkUpdateData,
 
   
 }
